@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     var tempInt: Int = 0
     var isBackspaceEnable: Bool = false
     var isNumbersEnabled: Bool = true
+    var labelSize: Int = 54
     
     @IBOutlet weak var resulltLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
@@ -108,8 +109,17 @@ class ViewController: UIViewController {
             rNumber = number.prefix(2) + "," + number.dropFirst(2).prefix(3) + "," + number.dropFirst(5).prefix(3)
         case 9:
             rNumber = number.prefix(3) + "," + number.dropFirst(3).prefix(3) + "," + number.dropFirst(6).prefix(3)
+        case 10:
+            rNumber = number.prefix(1) + "," + number.dropFirst(1).prefix(3) + "," + number.dropFirst(4).prefix(3)
+            rNumber = rNumber + "," + number.dropFirst(7).prefix(3)
+        case 11:
+            rNumber = number.prefix(2) + "," + number.dropFirst(2).prefix(3) + "," + number.dropFirst(5).prefix(3)
+            rNumber = rNumber + "," + number.dropFirst(8).prefix(3)
+        case 12:
+            rNumber = number.prefix(3) + "," + number.dropFirst(3).prefix(3) + "," + number.dropFirst(6).prefix(3)
+            rNumber = rNumber + "," + number.dropFirst(9).prefix(3)
         default:
-            return ""
+            return "0"
         }
         if isAbs == true{
             rNumber = "-" + rNumber
@@ -120,9 +130,9 @@ class ViewController: UIViewController {
             return rNumber
         }
     }
-
+    
     @IBAction func numberZeroButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -140,7 +150,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberOneButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -158,7 +168,7 @@ class ViewController: UIViewController {
         }
      }
     @IBAction func numberTwoButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -176,7 +186,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberThreeButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -194,7 +204,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberFourButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -212,7 +222,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberFiveButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -230,7 +240,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberSixButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -248,7 +258,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberSevenButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -266,7 +276,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberEightButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -284,7 +294,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func numberNineButton(_ sender: UIButton) {
-        if isNumbersEnabled == true && resulltLabel.text!.count < 11{
+        if isNumbersEnabled == true {
             changeColors(sender, btype: "num")
             result = resulltLabel.text!
             if resulltLabel.text == "0" {
@@ -312,6 +322,9 @@ class ViewController: UIViewController {
         resultInt = 0
         isBackspaceEnable = true
         isNumbersEnabled = true
+        var resetFont: UIFont
+        resetFont = UIFont(name: "Helvetica Neue", size: 54)!
+        resulltLabel.font = resetFont
     }
     
     @IBAction func fractionButton(_ sender: UIButton) {
@@ -441,8 +454,9 @@ class ViewController: UIViewController {
         isBackspaceEnable = false
         isNumbersEnabled = true
     }
-    
+
     @IBAction func equalButton(_ sender: UIButton) {
+        
         result = (resulltLabel.text!).replacingOccurrences(of: ",", with: "")
         if result.isEmpty == false{
             resultDouble = Double((resulltLabel.text!).replacingOccurrences(of: ",", with: ""))!
@@ -513,6 +527,29 @@ class ViewController: UIViewController {
         }else{
             resulltLabel.text = "0"
         }
+    }
+    
+    func fontSize (_ action: String){
+        var customFont: UIFont
+        if (action == "plus"){
+            labelSize += 1
+        }
+        else if action == "minus"{
+            labelSize -= 1
+        }
+        customFont = UIFont(name: "Helvetica Neue", size: CGFloat(labelSize))!
+        resulltLabel.font = customFont
+    }
+
+    @IBAction func pctButton(_ sender: UIButton) {
+        
+    }
+    @IBAction func labelSizeDown(_ sender: UIButton) {
+        fontSize ("minus")
+    }
+    
+    @IBAction func labelSizeUp(_ sender: UIButton) {
+        fontSize ("plus")
     }
 }
 
