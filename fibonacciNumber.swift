@@ -1,9 +1,14 @@
-var fibonacciArray : [Int] = []
-for i in 0...10 {
-    if i > 1 {
-        fibonacciArray += [fibonacciArray[fibonacciArray.count - 1] + fibonacciArray[fibonacciArray.count - 2]]
-    }else{
-        fibonacciArray += [i]
+func fibonacci (_ until : Int) -> [Int]{
+    var array : [Int] = []
+    for i in 0...until {
+        if i > 1 {
+            array += [array[array.count - 1] + array[array.count - 2]]
+        }else{
+            array += [i]
+        }
     }
+    return array
 }
-print(fibonacciArray)
+
+var arr = fibonacci(10)
+print(arr)
